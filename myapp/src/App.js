@@ -16,9 +16,10 @@ class App extends Component {
 
   render(props) {
     return (
+      //it use to display class based compononent
       <div className="App">
         <Header projectName={this.state.project[0].name}/>
-        <Header projectName={this.state.project[1].name}>Its replaced header</Header>
+        {/* <Header projectName={this.state.project[1].name}>Its replaced header</Header> */}
         <h1>Hi this is {this.props.name}</h1>
         <button onClick={this.switchClickHandler}>Click Here</button>
       </div>
