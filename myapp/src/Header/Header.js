@@ -17,6 +17,8 @@ const header = (props) => {
             <p>Inner text : {headerState.projectName[0].name}</p>
             <p>Inner text : {headerState.projectName[1].name}</p>
             <button onClick={switchClickHandler}>Click Here</button>
+            {/* replica of out button */}
+            <button onClick={props.click}>Outer copy</button>
         </div>
     );
 }
