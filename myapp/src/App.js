@@ -11,7 +11,7 @@ class App extends Component {
   switchClickHandler = (newValue) => {
    // console.log('testing click!!!');
     this.setState({
-      project : [{name:newValue},{name:'Clicked Given'}]
+      project : [{name:newValue}]
     });
   }
 
@@ -20,6 +20,13 @@ class App extends Component {
     const checkStatus = this.state.displayStatus;
     this.setState({displayStatus:!checkStatus});
   }
+  //function will remove state element
+  deleteRow = (arrayIndex) => {
+    // const project = this.state.project; #it should not be done with reference it should be with copy of list
+    const project = [...this.state.project];
+    project.splice(arrayIndex,1);
+    this.setState({project:project});
+  }
 
   render(props) {
       // add dynamically JSX
@@ -27,8 +34,8 @@ class App extends Component {
     if(this.state.displayStatus) {
       toggleHtml = (
         <div>
-          {this.state.project.map(pname => {
-            return (<h1>Project Name : {pname.name}</h1>);
+          {this.state.project.map((pname,index) => {
+            return (<div><h1>Project Name : {pname.name}</h1><a href="javascript:void(0)" onClick={()=>this.deleteRow(index)}>remove</a></div>);
           })}
         </div>
       );
@@ -36,7 +43,9 @@ class App extends Component {
     return (
       //it use to display class based compononent
       <div className="App">
-        <Header projectName={this.state.project[0].name} click={this.switchClickHandler.bind(this,'Hello!!!')}/>
+        {this.state.project.map((pname,index) => {
+          return (<Header projectName={pname.name} click={this.switchClickHandler.bind(this,'Hello!!!')}/>);
+        })}
         {/* <Header projectName={this.state.project[1].name}>Its replaced header</Header> */}
         <h1>Hi this is {this.props.name}</h1>
         <button onClick={this.switchClickHandler.bind(this,'Hi!!!')}>Click Here</button>
