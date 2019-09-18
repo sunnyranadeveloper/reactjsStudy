@@ -4,7 +4,7 @@ import Header from './Header/Header'
 
 class App extends Component {
   state = {
-    project : [{name:'Test'},{name:'Given'}],
+    project : [{id:'1',name:'Test'},{id:'2',name:'Given'}],
     displayStatus : false
   }
 
@@ -35,7 +35,7 @@ class App extends Component {
       toggleHtml = (
         <div>
           {this.state.project.map((pname,index) => {
-            return (<div><h1>Project Name : {pname.name}</h1><a href="javascript:void(0)" onClick={()=>this.deleteRow(index)}>remove</a></div>);
+            return (<div key={pname.id}><h1>Project Name : {pname.name}</h1><a href="javascript:void(0);" onClick={()=>this.deleteRow(index)}>remove</a></div>);
           })}
         </div>
       );
@@ -44,7 +44,7 @@ class App extends Component {
       //it use to display class based compononent
       <div className="App">
         {this.state.project.map((pname,index) => {
-          return (<Header projectName={pname.name} click={this.switchClickHandler.bind(this,'Hello!!!')}/>);
+          return (<Header projectName={pname.name} click={this.switchClickHandler.bind(this,'Hello!!!')} key={pname.id}/>);
         })}
         {/* <Header projectName={this.state.project[1].name}>Its replaced header</Header> */}
         <h1>Hi this is {this.props.name}</h1>
