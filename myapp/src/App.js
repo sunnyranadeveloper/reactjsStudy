@@ -27,7 +27,9 @@ class App extends Component {
     if(this.state.displayStatus) {
       toggleHtml = (
         <div>
-          <h1>Toggle Content</h1>
+          {this.state.project.map(pname => {
+            return (<h1>Project Name : {pname.name}</h1>);
+          })}
         </div>
       );
   }
