@@ -4,7 +4,8 @@ import Header from './Header/Header'
 
 class App extends Component {
   state = {
-    project : [{name:'Test'},{name:'Given'}]
+    project : [{name:'Test'},{name:'Given'}],
+    displayStatus : false
   }
 
   switchClickHandler = (newValue) => {
@@ -14,7 +15,22 @@ class App extends Component {
     });
   }
 
+  // function will toggle content on click
+  toggleContent = () => {
+    const checkStatus = this.state.displayStatus;
+    this.setState({displayStatus:!checkStatus});
+  }
+
   render(props) {
+      // add dynamically JSX
+    let toggleHtml = null;
+    if(this.state.displayStatus) {
+      toggleHtml = (
+        <div>
+          <h1>Toggle Content</h1>
+        </div>
+      );
+  }
     return (
       //it use to display class based compononent
       <div className="App">
@@ -25,6 +41,10 @@ class App extends Component {
         
         {/* commenting this new standard of ES6 not efficient but we can use it prefer upper one*/}
         {/* <button onClick={() => this.switchClickHandler('Hi!!!')}>Outer</button> */}
+        
+        {/* code for conditional rendering */}
+        <button onClick={this.toggleContent}>Toggle Content</button>
+        {toggleHtml}
       </div>
       );
       // return React.createElement('div',{className:'App'},React.createElement('h1',null,'Testing page with React '));
