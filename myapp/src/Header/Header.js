@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-
+const color = {
+    color: '#987'
+}
 const header = (props) => {
     const [headerState,setHeaderState] = useState({
         projectName : [{name: "Inner 1"},{name: "Inner 2"}]
@@ -17,7 +19,7 @@ const header = (props) => {
     //it use to display function based compononent
     return (
         <div>
-            <h2>Hi I am a header {props.projectName}</h2>
+            <h2 style={color}>Hi I am a header {props.projectName}</h2>
             <p>{props.children}</p>
             <p>Inner text : {headerState.projectName[0].name}</p>
             <p>Inner text : {headerState.projectName[1].name}</p>
